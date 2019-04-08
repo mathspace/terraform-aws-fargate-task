@@ -21,7 +21,7 @@ resource "aws_ecs_task_definition" "ecs_task" {
   family                   = "${var.name}-task"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  container_definitions    = "${data.external.definition_json.result.rendered}"
+  container_definitions    = "${lookup(data.external.definition_json.result, "rendered")}"
 
   # Gives the Docker agent permission to ECR and CloudWatch logs
   execution_role_arn = "${aws_iam_role.ecs_task_execution_role.arn}"
