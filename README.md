@@ -14,11 +14,6 @@ See [examples](examples).
 
 Use [run_fargate_task.sh](run_fargate_task.sh) to run Fargate tasks manually.
 
-## Known issues
-
-- AWS Fargate may sometimes fail to submit the final seconds of logs to CloudWatch Logs when
-  a task ends. See workaround: https://stackoverflow.com/a/55359669
-
 ## Inputs
 
 | Name                 | Description                                                                                                   |  Type  | Default | Required |
