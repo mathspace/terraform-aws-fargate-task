@@ -10,6 +10,7 @@ locals {
     log_group            = "${local.log_group_name}"
     region               = "${data.aws_region.region.name}"
     environment          = "${var.environment}"
+    secrets              = "${var.secrets}"
   }
 }
 

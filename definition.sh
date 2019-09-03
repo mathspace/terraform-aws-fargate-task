@@ -11,7 +11,7 @@
 #
 # Usage:
 #
-# $ ./definition.sh '{ "name": "hello-world", "image_repository_url": "aws_account_id.dkr.ecr.region.amazonaws.com/hello-world", "image_tag": "latest", "log_group": "/aws/ecs/hello-world", "region": "us-west-1", "environment": { "ENV_VAR_1": "foo", "ENV_VAR_2": "bar" }}'
+# $ ./definition.sh '{ "name": "hello-world", "image_repository_url": "aws_account_id.dkr.ecr.region.amazonaws.com/hello-world", "image_tag": "latest", "log_group": "/aws/ecs/hello-world", "region": "us-west-1", "environment": { "ENV_VAR_1": "foo", "ENV_VAR_2": "bar" }, "secrets": {}}'
 #
 
 set -euo pipefail
@@ -24,6 +24,7 @@ image_tag="$(echo "$INPUT" | jq -r .image_tag )"
 log_group="$(echo "$INPUT" | jq -r .log_group )"
 region="$(echo "$INPUT" | jq -r .region )"
 environment="$(echo "$INPUT" | jq '.environment | to_entries | map({name: .key, value: .value})')"
+secrets="$(echo "$INPUT" | jq '.secrets | to_entries | map({name: .key, valueFrom: .value})')"
 
 image="$image_repository_url:$image_tag"
 
@@ -35,6 +36,7 @@ rendered="$(cat <<EOF
     "networkMode": "awsvpc",
     "essential": true,
     "environment": ${environment},
+    "secrets": ${secrets},
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {

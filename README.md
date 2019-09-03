@@ -16,17 +16,19 @@ Use [run_fargate_task.sh](run_fargate_task.sh) to run Fargate tasks manually.
 
 ## Inputs
 
-| Name                 | Description                                                                                                   |  Type  | Default | Required |
-| -------------------- | ------------------------------------------------------------------------------------------------------------- | :----: | :-----: | :------: |
-| cpu                  | CPU allocation, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html    | string | `"256"` |    no    |
-| desired_count        | Number of desired running tasks, or 0 to run only when manually invoked                                       | string |  `"0"`  |    no    |
-| environment          | Environment variables passed into the task at runtime                                                         |  map   | `<map>` |    no    |
-| image_repository_url | AWS ECR repository URL for the Docker image to use                                                            | string |   n/a   |   yes    |
-| image_tag            | Image tag of the Docker image to use                                                                          | string |   n/a   |   yes    |
-| memory               | Memory allocation, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html | string | `"512"` |    no    |
-| name                 | Name of the Fargate task and related resources                                                                | string |   n/a   |   yes    |
-| security_groups      | VPC security groups to assign to the task                                                                     |  list  |   n/a   |   yes    |
-| subnets              | VPC subnets to assign to the task                                                                             |  list  |   n/a   |   yes    |
+| Name                 | Description                                                                                                   |  Type  |   Default   | Required |
+| -------------------- | ------------------------------------------------------------------------------------------------------------- | :----: | :---------: | :------: |
+| cluster_name         | Name of the Fargate cluster                                                                                   | string | `"default"` |   yes    |
+| cpu                  | CPU allocation, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html    | string |   `"256"`   |    no    |
+| desired_count        | Number of desired running tasks, or 0 to run only when manually invoked                                       | string |    `"0"`    |    no    |
+| environment          | Environment variables passed into the task at runtime                                                         |  map   |   `<map>`   |    no    |
+| image_repository_url | AWS ECR repository URL for the Docker image to use                                                            | string |     n/a     |   yes    |
+| image_tag            | Image tag of the Docker image to use                                                                          | string |     n/a     |   yes    |
+| memory               | Memory allocation, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html | string |   `"512"`   |    no    |
+| name                 | Name of the Fargate task and related resources                                                                | string |     n/a     |   yes    |
+| security_groups      | VPC security groups to assign to the task                                                                     |  list  |     n/a     |   yes    |
+| secrets              | Secret environment variables to be read from Parameter Store and Secrets Manager                              |  map   |   `<map>`   |    no    |
+| subnets              | VPC subnets to assign to the task                                                                             |  list  |     n/a     |   yes    |
 
 ## Outputs
 

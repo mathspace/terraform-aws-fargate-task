@@ -46,3 +46,9 @@ variable "environment" {
   type        = "map"
   default     = {}
 }
+
+variable "secrets" {
+  description = "Secret environment variables to be read from Parameter Store and Secrets Manager"
+  type        = "map"
+  default     = {}
+}
