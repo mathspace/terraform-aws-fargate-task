@@ -1,7 +1,7 @@
 data "aws_region" "region" {}
 
 locals {
-  log_group_name = "/aws/ecs/${var.name}"
+  log_group_name = "/aws/ecs/${var.cluster_name}/${var.name}"
 
   definition_json_inputs = {
     name                 = "${var.name}"
@@ -19,7 +19,7 @@ data "external" "definition_json" {
 }
 
 resource "aws_ecs_task_definition" "ecs_task" {
-  family                   = "${var.name}-task"
+  family                   = "${var.name}"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   container_definitions    = "${lookup(data.external.definition_json.result, "rendered")}"
@@ -38,11 +38,11 @@ resource "aws_ecs_task_definition" "ecs_task" {
 }
 
 resource "aws_ecs_cluster" "ecs_cluster" {
-  name = "${var.name}-cluster"
+  name = "${var.cluster_name}"
 }
 
 resource "aws_ecs_service" "ecs_service" {
-  name            = "${var.name}-service"
+  name            = "${var.name}"
   cluster         = "${aws_ecs_cluster.ecs_cluster.id}"
   launch_type     = "FARGATE"
   task_definition = "${aws_ecs_task_definition.ecs_task.arn}"

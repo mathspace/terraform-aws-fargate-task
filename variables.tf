@@ -3,6 +3,12 @@ variable "name" {
   type        = "string"
 }
 
+variable "cluster_name" {
+  description = "Name of the Fargate cluster"
+  type        = "string"
+  default     = "default"
+}
+
 variable "image_repository_url" {
   description = "AWS ECR repository URL for the Docker image to use"
   type        = "string"
