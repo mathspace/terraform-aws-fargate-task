@@ -23,6 +23,11 @@ output "task_role_arn" {
   value       = "${aws_iam_role.ecs_task_role.arn}"
 }
 
+output "ecs_task_execution_role_id" {
+  description = "ID for the ECS task execution role, to attach a custom policy"
+  value       = "${aws_iam_role.ecs_task_execution_role.id}"
+}
+
 output "ecs_task_role_id" {
   description = "ID for the ECS task role, to attach a custom policy"
   value       = "${aws_iam_role.ecs_task_role.id}"

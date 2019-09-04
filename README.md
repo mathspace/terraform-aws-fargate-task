@@ -32,9 +32,10 @@ Use [run_fargate_task.sh](run_fargate_task.sh) to run Fargate tasks manually.
 
 ## Outputs
 
-| Name             | Description                                         |
-| ---------------- | --------------------------------------------------- |
-| ecs_cluster_arn  | ARN of the ECS cluster                              |
-| ecs_service_arn  | ARN of the ECS service                              |
-| ecs_task_role_id | ID for the ECS task role, to attach a custom policy |
-| log_group_name   | CloudWatch log group used for logging               |
+| Name                       | Description                                                   |
+| -------------------------- | ------------------------------------------------------------- |
+| ecs_cluster_arn            | ARN of the ECS cluster                                        |
+| ecs_service_arn            | ARN of the ECS service                                        |
+| ecs_task_execution_role_id | ID for the ECS task execution role, to attach a custom policy |
+| ecs_task_role_id           | ID for the ECS task role, to attach a custom policy           |
+| log_group_name             | CloudWatch log group used for logging                         |
