@@ -16,11 +16,12 @@ resource "aws_iam_role" "ecs_task_execution_role" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_role_policy" "ecs_task_execution_role_policy" {
   name = "${var.name}-ecs-task-execution-role-policy"
-  role = "${aws_iam_role.ecs_task_execution_role.id}"
+  role = aws_iam_role.ecs_task_execution_role.id
 
   policy = <<EOF
 {
@@ -41,6 +42,7 @@ resource "aws_iam_role_policy" "ecs_task_execution_role_policy" {
     ]
 }
 EOF
+
 }
 
 resource "aws_iam_role" "ecs_task_role" {
@@ -64,11 +66,12 @@ resource "aws_iam_role" "ecs_task_role" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_role_policy" "ecs_task_role_logging_policy" {
   name = "${var.name}-ecs-task-role-logging-policy"
-  role = "${aws_iam_role.ecs_task_role.id}"
+  role = aws_iam_role.ecs_task_role.id
 
   policy = <<EOF
 {
@@ -85,4 +88,6 @@ resource "aws_iam_role_policy" "ecs_task_role_logging_policy" {
     ]
 }
 EOF
+
 }
+
