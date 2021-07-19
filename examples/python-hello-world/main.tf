@@ -10,7 +10,7 @@ provider "aws" {
 }
 
 module "python-hello-world-image" {
-  source      = "github.com/mathspace/terraform-aws-ecr-docker-image?ref=v2.0"
+  source      = "github.com/mathspace/terraform-aws-ecr-docker-image?ref=v4.0"
   image_name  = "python-hello-world"
   source_path = "${path.module}/src"
 }
